@@ -18,141 +18,59 @@ let operandOne;
 let operandTwo;
 let operator;
 
-function operate (operator, operandOne, operandTwo) {
-    if (operator == "+") {
-        add(operandOne, operandTwo);
-    }
-    if (operator == "-") {
-        subtract(operandOne, operandTwo);
-    }
-    if (operator == "x") {
-        multiply(operandOne, operandTwo);
-    }
-    if (operator == "/") {
-        divide (operandOne, operandTwo);
-    }
-}
-
 let display = document.querySelector("#display");
 
 
-operandOne = function () {
+function numbers () {
 
     document.querySelector("#no1").addEventListener("click", () => {
-        display.textContent = no1.textContent;
+        display.textContent += no1.textContent;
     });
-
 
     document.querySelector("#no2").addEventListener("click", () => {
-        display.textContent = no2.textContent;
+        display.textContent += no2.textContent;
     });
-
-
 
     document.querySelector("#no3").addEventListener("click", () => {
-        display.textContent = no3.textContent;
+        display.textContent += no3.textContent;
     });
-
 
     document.querySelector("#no4").addEventListener("click", () => {
-        display.textContent = no4.textContent;
+        display.textContent += no4.textContent;
     });
-
 
     document.querySelector("#no5").addEventListener("click", () => {
-        display.textContent = no5.textContent;
+        display.textContent += no5.textContent;
     });
-
-
 
     document.querySelector("#no6").addEventListener("click", () => {
-            display.textContent = no4.textContent;
+            display.textContent += no4.textContent;
     });
-
 
     document.querySelector("#no7").addEventListener("click", () => {
-            display.textContent = no4.textContent;
+            display.textContent += no4.textContent;
     });
-
 
     document.querySelector("#no8").addEventListener("click", () => {
-        display.textContent = no8.textContent;
+        display.textContent += no8.textContent;
     });
-
 
     document.querySelector("#no9").addEventListener("click", () => {
-        display.textContent = no9.textContent;
+        display.textContent += no9.textContent;
      });
-
 
     document.querySelector("#no0").addEventListener("click", () => {
-        display.textContent = no0.textContent;
+        display.textContent += no0.textContent;
      });
-}
-
-operandOne();
-
-operandTwo = function () {
-    document.querySelector("#no1").addEventListener("click", () => {
-        display.textContent = no1.textContent;
-    });
-
-
-    document.querySelector("#no2").addEventListener("click", () => {
-        display.textContent = no2.textContent;
-    });
-
-
-
-    document.querySelector("#no3").addEventListener("click", () => {
-        display.textContent = no3.textContent;
-    });
-
-
-    document.querySelector("#no4").addEventListener("click", () => {
-        display.textContent = no4.textContent;
-    });
-
-
-    document.querySelector("#no5").addEventListener("click", () => {
-        display.textContent = no5.textContent;
-    });
-
-
-
-    document.querySelector("#no6").addEventListener("click", () => {
-            display.textContent = no4.textContent;
-    });
-
-
-    document.querySelector("#no7").addEventListener("click", () => {
-            display.textContent = no4.textContent;
-    });
-
-
-    document.querySelector("#no8").addEventListener("click", () => {
-        display.textContent = no8.textContent;
-    });
-
-
-    document.querySelector("#no9").addEventListener("click", () => {
-        display.textContent = no9.textContent;
-     });
-
-
-    document.querySelector("#no0").addEventListener("click", () => {
-        display.textContent = no0.textContent;
-     });
-}
-
-operandTwo();
-
-function displaySymbols () {
 
     document.querySelector ("#point").addEventListener("click", () => {
-        display.textContent = point.textContent;
+        display.textContent += point.textContent;
     });
+}
 
+numbers();
+
+function signs () {
     document.querySelector ("#plus").addEventListener("click", () => {
         display.textContent = plus.textContent;
     });
@@ -168,7 +86,30 @@ function displaySymbols () {
     document.querySelector ("#division").addEventListener("click", () => {
         display.textContent = division.textContent;
     });
+
+    document.querySelector("#clear").addEventListener("click", () => {
+        display.textContent = "";
+    });
 }
 
-displaySymbols();
+signs();
 
+    
+function calculation (x, y, z) {
+
+    document.querySelector("#equals").addEventListener("click", () => {
+
+        if (operandOne && operator.textContent == "+" && operandTwo) {
+            add(operandOne, operandTwo);
+        }
+        if (operandOne && operator.textContent == "-" && operandTwo) {
+            subtract(operandOne, operandTwo);
+        }
+        if (operandOne && operator.textContent == "x" && operandTwo) {
+            multiply(operandOne, operandTwo);
+        }
+        if (operandOne && operator.textContent == "/" && operandTwo) {
+            divide (operandOne, operandTwo);
+        }
+    })
+};
