@@ -18,98 +18,47 @@ let operandOne;
 let operandTwo;
 let operator;
 
-let display = document.querySelector("#display");
-
-
-function numbers () {
-
-    document.querySelector("#no1").addEventListener("click", () => {
-        display.textContent += no1.textContent;
-    });
-
-    document.querySelector("#no2").addEventListener("click", () => {
-        display.textContent += no2.textContent;
-    });
-
-    document.querySelector("#no3").addEventListener("click", () => {
-        display.textContent += no3.textContent;
-    });
-
-    document.querySelector("#no4").addEventListener("click", () => {
-        display.textContent += no4.textContent;
-    });
-
-    document.querySelector("#no5").addEventListener("click", () => {
-        display.textContent += no5.textContent;
-    });
-
-    document.querySelector("#no6").addEventListener("click", () => {
-            display.textContent += no4.textContent;
-    });
-
-    document.querySelector("#no7").addEventListener("click", () => {
-            display.textContent += no4.textContent;
-    });
-
-    document.querySelector("#no8").addEventListener("click", () => {
-        display.textContent += no8.textContent;
-    });
-
-    document.querySelector("#no9").addEventListener("click", () => {
-        display.textContent += no9.textContent;
-     });
-
-    document.querySelector("#no0").addEventListener("click", () => {
-        display.textContent += no0.textContent;
-     });
-
-    document.querySelector ("#point").addEventListener("click", () => {
-        display.textContent += point.textContent;
-    });
+function operate (sign, number1, number2) {
+    if(sign == "+") {
+        return add(number1, number2);
+    } 
+    else if (sign == "-"){
+        return subtract(number1, number2);
+    }
+    else if (sign == "*") {
+        return multiply(number1, number2);
+    }
+    else if (sign == "/") {
+        return divide (number1, number2);
+    }
 }
 
-numbers();
+let displayNumber = document.querySelector("#display");
 
-function signs () {
-    document.querySelector ("#plus").addEventListener("click", () => {
-        display.textContent = plus.textContent;
-    });
+let numbers = document.querySelectorAll("#numbers");
+numbers.forEach(number => number.addEventListener("click", (e) => {
+    displayNumber.textContent += e.target.textContent;
+}));
 
-    document.querySelector ("#minus").addEventListener("click", () => {
-        display.textContent = minus.textContent;
-    });
 
-    document.querySelector ("#times").addEventListener("click", () => {
-        display.textContent = times.textContent;
-    });
-
-    document.querySelector ("#division").addEventListener("click", () => {
-        display.textContent = division.textContent;
-    });
-
+function allClear() {
     document.querySelector("#clear").addEventListener("click", () => {
-        display.textContent = "";
+        displayNumber.textContent = "";
     });
 }
 
-signs();
+allClear();
 
-    
-function calculation (x, y, z) {
+function erase () {
+    document.querySelector("#delete").addEventListener("click", () => {
+        displayNumber.textContent = displayNumber.textContent.toString().slice(0, -1);
+    });
+}
 
+erase();
+
+function equals () {
     document.querySelector("#equals").addEventListener("click", () => {
+        operate();
+})};
 
-        if (operandOne && operator.textContent == "+" && operandTwo) {
-            add(operandOne, operandTwo);
-        }
-        if (operandOne && operator.textContent == "-" && operandTwo) {
-            subtract(operandOne, operandTwo);
-        }
-        if (operandOne && operator.textContent == "x" && operandTwo) {
-            multiply(operandOne, operandTwo);
-        }
-        if (operandOne && operator.textContent == "/" && operandTwo) {
-            divide (operandOne, operandTwo);
-        }
-    })
-};
