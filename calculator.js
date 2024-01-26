@@ -14,36 +14,56 @@ function divide (a, b) {
     return a / b;
 }
 
-let operandOne;
-let operandTwo;
-let operator;
+function operate (num1, num2) {
 
-function operate (sign, number1, number2) {
-    if(sign == "+") {
-        return add(number1, number2);
+    if(operator == "+") {
+        return add(num1, num2);
     } 
-    else if (sign == "-"){
-        return subtract(number1, number2);
+    else if (operator == "-"){
+        return subtract(num1, num2);
     }
-    else if (sign == "*") {
-        return multiply(number1, number2);
+    else if (operator == "*") {
+        return multiply(num1, num2);
     }
-    else if (sign == "/") {
-        return divide (number1, number2);
+    else if (operator == "/") {
+        return divide (num1, num2);
     }
 }
 
-let displayNumber = document.querySelector("#display");
+let previousValue = "";
+let operator = "";
+let currentValue = "";
+
+let previousScreen = document.querySelector(".firstDisplay");
+let currentScreen = document.querySelector(".secondDisplay");
 
 let numbers = document.querySelectorAll("#numbers");
 numbers.forEach(number => number.addEventListener("click", (e) => {
-    displayNumber.textContent += e.target.textContent;
-}));
+    let num = e.target.textContent;
+    if (currentValue.length <= 10) {
+    currentValue += num;
+    currentScreen.textContent = currentValue;
+}
+}));   
 
+let operators = document.querySelectorAll ("#signs");
+operators.forEach(sign => sign.addEventListener("click", (e) => {
+    let op = e.target.textContent;
+    operator = op;
+    previousValue = currentValue;
+    currentValue = ""
+    previousScreen.textContent = previousValue + " " + operator;
+    currentScreen.textContent = currentValue; 
+}));
 
 function allClear() {
     document.querySelector("#clear").addEventListener("click", () => {
-        displayNumber.textContent = "";
+        previousValue = "";
+        currentValue = "";
+        operator = "";
+        previousScreen.textContent = currentValue
+        currentScreen.textContent = currentValue;
+
     });
 }
 
@@ -51,14 +71,18 @@ allClear();
 
 function erase () {
     document.querySelector("#delete").addEventListener("click", () => {
-        displayNumber.textContent = displayNumber.textContent.toString().slice(0, -1);
+        display.textContent = display.textContent.toString().slice(0, -1);
     });
 }
 
 erase();
 
-function equals () {
-    document.querySelector("#equals").addEventListener("click", () => {
-        operate();
-})};
+let result = document.querySelector("#equals");
+result.addEventListener("click", () => {
+    console.log(operate(display.textContent, displayNum));
+});
 
+// let display = document.querySelector("#display");
+// let displayNum = display.textContent;
+
+let decimal = document.querySelector("#point");

@@ -3,11 +3,14 @@
     <head>
         <title>Calculator</title>
         <meta charset="UTF-8">
+        <link ref="stylesheet" href="calculator.css">
     </head>
     <body>
     <div id="mainContainer">
         <h1>Basic Calculator</h1>
-        <div id="display">456</div>
+        <div id="display"></div>
+            <div class="firstDisplay"></div>
+            <div class="secondDisplay"></div>
         <div id="numbers">
             <button id="no1">1</button>
             <button id="no2">2</button>
@@ -19,13 +22,15 @@
             <button id="no8">8</button>
             <button id="no9">9</button>
             <button id="no0">0</button>
+            <button id="point">.</button>
         </div>
         <div id="signs">
-            <button id="point">.</button>
             <button id="plus">+</button>
             <button id="minus">-</button>
             <button id="times">x</button>
             <button id="division">/</button>
+        </div>
+        <div>
             <button id="equals">=</button>
             <button id="clear">AC</button>
             <button id="delete">DE</button>
