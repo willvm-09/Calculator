@@ -16,16 +16,16 @@ function divide (a, b) {
 
 function operate (num1, num2) {
 
-    if(operator == "+") {
+    if(operator === "+") {
         return add(num1, num2);
     } 
-    else if (operator == "-"){
+    else if (operator === "-"){
         return subtract(num1, num2);
     }
-    else if (operator == "*") {
+    else if (operator === "x") {
         return multiply(num1, num2);
     }
-    else if (operator == "/") {
+    else if (operator === "/") {
         return divide (num1, num2);
     }
 }
@@ -37,24 +37,58 @@ let currentValue = "";
 let previousScreen = document.querySelector(".firstDisplay");
 let currentScreen = document.querySelector(".secondDisplay");
 
-let numbers = document.querySelectorAll("#numbers");
-numbers.forEach(number => number.addEventListener("click", (e) => {
+function displayNumbers () {
+    
+    let numbers = document.querySelectorAll("#numbers");
+    numbers.forEach(number => number.addEventListener("click", (e) => {
     let num = e.target.textContent;
     if (currentValue.length <= 10) {
     currentValue += num;
     currentScreen.textContent = currentValue;
-}
-}));   
 
-let operators = document.querySelectorAll ("#signs");
-operators.forEach(sign => sign.addEventListener("click", (e) => {
+}}));   
+}
+
+displayNumbers();
+
+function displayOperators () {
+    let operators = document.querySelectorAll ("#signs");
+    operators.forEach(sign => sign.addEventListener("click", (e) => {
     let op = e.target.textContent;
     operator = op;
     previousValue = currentValue;
-    currentValue = ""
+    currentValue = "";
     previousScreen.textContent = previousValue + " " + operator;
     currentScreen.textContent = currentValue; 
 }));
+}
+
+
+displayOperators();
+
+function equals () {
+let result = document.querySelector("#equals");
+result.addEventListener("click", () => {
+    if (currentValue != "" && previousValue != ""){
+        previousValue = Number(previousValue);
+        currentValue = Number(currentValue); 
+        previousScreen.textContent = previousValue + operator + currentValue;
+        currentScreen.textContent = operate(previousValue, currentValue);
+        let total = operate(previousValue, currentValue);
+        currentValue = total;
+    }
+});
+}
+
+function chainOperation () {
+    total = currentValue;
+    previousValue = currentValue;
+    currentValue = "";
+    previousScreen.textContent = previousValue + " " + operator;
+    currentScreen.textContent = currentValue; 
+}
+
+equals();
 
 function allClear() {
     document.querySelector("#clear").addEventListener("click", () => {
@@ -63,7 +97,6 @@ function allClear() {
         operator = "";
         previousScreen.textContent = currentValue
         currentScreen.textContent = currentValue;
-
     });
 }
 
@@ -71,18 +104,8 @@ allClear();
 
 function erase () {
     document.querySelector("#delete").addEventListener("click", () => {
-        display.textContent = display.textContent.toString().slice(0, -1);
+        currentScreen.textContent = currentScreen.textContent.toString().slice(0, -1);
     });
 }
 
 erase();
-
-let result = document.querySelector("#equals");
-result.addEventListener("click", () => {
-    console.log(operate(display.textContent, displayNum));
-});
-
-// let display = document.querySelector("#display");
-// let displayNum = display.textContent;
-
-let decimal = document.querySelector("#point");
