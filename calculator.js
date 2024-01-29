@@ -39,7 +39,7 @@ let currentScreen = document.querySelector(".secondDisplay");
 
 function displayNumbers () {
     
-    let numbers = document.querySelectorAll("#numbers");
+    let numbers = document.querySelectorAll(".numbers");
     numbers.forEach(number => number.addEventListener("click", (e) => {
     let num = e.target.textContent;
     if (currentValue.length <= 10) {
@@ -52,7 +52,7 @@ function displayNumbers () {
 displayNumbers();
 
 function displayOperators () {
-    let operators = document.querySelectorAll ("#signs");
+    let operators = document.querySelectorAll (".signs");
     operators.forEach(sign => sign.addEventListener("click", (e) => {
     let op = e.target.textContent;
     operator = op;
@@ -78,14 +78,6 @@ result.addEventListener("click", () => {
         currentValue = total;
     }
 });
-}
-
-function chainOperation () {
-    total = currentValue;
-    previousValue = currentValue;
-    currentValue = "";
-    previousScreen.textContent = previousValue + " " + operator;
-    currentScreen.textContent = currentValue; 
 }
 
 equals();
